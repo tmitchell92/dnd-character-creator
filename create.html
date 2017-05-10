@@ -23,28 +23,33 @@
     <li><a href="index.html"><b>Main Page</b></a></li>
     <li><a href="create.html"><b>Creation Page</b></a></li>
     <li><a href="custom.html"><b>Custom Character</b></a></li>
+    <li><a href="aboutus.html"><b>About Us</b></a></li>
     <li><b>Your Characters</b></li>
   </ul>
 </div>
 </div>
 <div class="wrapper" id="createfields">
 
+  <div class="label-div">Name
     <input type="text" name="name" id="name">
+  </div>
 
-    <div id="height">Height
+    <div id="height" class="label-div">Height
 
       <input type="text" placeholder="feet" id="feet" />
 
       <input type="text" placeholder="inches" id="inches" />
     </div>
 
-    <input type="text" placeholder="weight" id="weight" />
+    <div class="label-div">Weight
+      <input type="text" placeholder="pounds" id="weight" />
+    </div>
 
-    <div id="charStory">Character Story
+    <div id="charStory" class="label-div">Character Story
       <textarea id="characterStory"></textarea>
     </div>
 
-    <div id="charLooks">Looks
+    <div id="charLooks" class="label-div">Looks
       <textarea id="looks"></textarea>
     </div>
 
@@ -89,7 +94,7 @@
 
     <input type="number" id="num-rolls-input" value="6" min="6" max="12">
 
-    <button type="button" id="submit">Submit!</button>
+    <button type="button" id="submit">Roll Dice!</button>
 
     <div id="attributes-div">
     </div>

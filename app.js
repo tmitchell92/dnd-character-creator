@@ -1,12 +1,13 @@
 'use strict';
 var character;
+var currentCharacter = [];
 var timesToRoll; //sets the number of rolls
 var rolls = [];
 var myCharacters = JSON.parse(localStorage.getItem('myCharacters'));
 if (myCharacters === null){
   myCharacters = [];
 }
-var currentCharacter = [];
+//var currentCharacter = [];
 function Character(name, race, gender, charClass, align) {
   this.name = name;
   this.race = race;
@@ -81,7 +82,7 @@ function rollDice(numRolls) {
   return rolls;
 }
 function onlyLetters(nameInput) {
-  //below is a regular expression that represents all upper and lower case letters
+  //regular expression for all upper and lower case letters and spaces
   var alpha = /^[A-Za-z \s]+$/;
   if(nameInput.match(alpha))
   {
@@ -148,6 +149,15 @@ function renderAttributesTable() {
       dwnDiv.innerHTML = '<img class="down-arrow" src="assets/arrow22.png" alt="Down"/>';
       dwnDiv.addEventListener('click', handleDwnClick);
       rollDiv.appendChild(dwnDiv);
+    }
+    if(i ===  6) {
+      var hr = document.createElement('hr');
+      hr.setAttribute('width', '50%');
+      hr.setAttribute('align', 'center');
+      attributesDiv.appendChild(hr);
+      var p = document.createElement('p');
+      p.textContent = 'Rolls below line will be discarded.';
+      attributesDiv.appendChild(p);
     }
     attributesDiv.appendChild(rollDiv);
   }
@@ -271,4 +281,22 @@ for (var i = 0; i < myCharacters.length; i++){
   aTag.innerHTML = myCharacters[i].name;
   sidebar.appendChild(aTag);
 }
+
+var aTags = [];
+function eventAdder (){
+  aTags = document.getElementsByName('click');
+  for (var i=0;i<aTags.length;i++){
+    var a = aTags[i];
+    a.addEventListener('click', handleSubmitClickSideBar);
+  }
+}
+eventAdder();
+
+function handleSubmitClickSideBar(event) {
+  // event.preventDefault();
+  var currentTarget = event.target.id;
+  currentCharacter = myCharacters[currentTarget];
+  localStorage.setItem('currentCharacter', JSON.stringify(currentCharacter));
+}
+
 main();
